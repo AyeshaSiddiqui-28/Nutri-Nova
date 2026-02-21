@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Advanced Diet Planner</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #43cea2, #185a9d);
+            text-align: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            width: 400px;
+            margin: auto;
+            box-shadow: 0 0 20px rgba(0,0,0,0.2);
+        }
+
+        input, select {
+            width: 95%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            background-color: #43cea2;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #2bb673;
+        }
+
+        #result {
+            margin-top: 20px;
+            text-align: left;
+        }
+
+        h3 {
+            color: #185a9d;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Smart Diet Plan Generator</h1>
+
+<div class="container">
+    <input type="number" id="age" placeholder="Enter Your Age">
+
+    <select id="gender">
+        <option value="">Select Gender</option>
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+    </select>
+
+    <select id="goal">
+        <option value="">Select Goal</option>
+        <option value="loss">Weight Loss</option>
+        <option value="gain">Weight Gain</option>
+    </select>
+
+    <button onclick="generateDiet()">Generate Diet Plan</button>
+
+    <div id="result"></div>
+</div>
+
+<script>
+function generateDiet() {
+    let age = parseInt(document.getElementById("age").value);
+    let gender = document.getElementById("gender").value;
+    let goal = document.getElementById("goal").value;
+    let result = document.getElementById("result");
+
+    if (!age || !gender || !goal) {
+        result.innerHTML = "<p style='color:red;'>Please fill all fields!</p>";
+        return;
+    }
+
+    let diet = "<h3>Your Personalized Diet Plan</h3>";
+
+    // CHILD
+    if(age <= 12){
+        diet += "<p><b>Breakfast:</b> Milk, Banana, Boiled Egg</p>";
+        diet += "<p><b>Lunch:</b> Rice, Chicken/Vegetables, Yogurt</p>";
+        diet += "<p><b>Snack:</b> Fruits</p>";
+        diet += "<p><b>Dinner:</b> Chapati, Daal, Salad</p>";
+    }
+
+    // TEENS
+    else if(age <= 19){
+        if(goal === "gain"){
+            diet += "<p><b>Breakfast:</b> Eggs, Milk, Peanut Butter Toast</p>";
+            diet += "<p><b>Lunch:</b> Rice, Chicken, Vegetables</p>";
+            diet += "<p><b>Snack:</b> Nuts & Banana Shake</p>";
+            diet += "<p><b>Dinner:</b> Chapati, Meat, Salad</p>";
+        } else {
+            diet += "<p><b>Breakfast:</b> Oats, Apple, Green Tea</p>";
+            diet += "<p><b>Lunch:</b> Grilled Chicken, Brown Rice</p>";
+            diet += "<p><b>Snack:</b> Fruits</p>";
+            diet += "<p><b>Dinner:</b> Soup, Salad</p>";
+        }
+    }
+
+    // ADULT
+    else if(age <= 45){
+        if(goal === "gain"){
+            diet += "<p><b>Breakfast:</b> 3 Eggs, Milk, Bread</p>";
+            diet += "<p><b>Lunch:</b> Rice, Chicken/Fish, Vegetables</p>";
+            diet += "<p><b>Snack:</b> Protein Shake, Nuts</p>";
+            diet += "<p><b>Dinner:</b> Chapati, Meat, Yogurt</p>";
+        } else {
+            diet += "<p><b>Breakfast:</b> Oats, Green Tea</p>";
+            diet += "<p><b>Lunch:</b> Grilled Chicken, Salad</p>";
+            diet += "<p><b>Snack:</b> Almonds, Apple</p>";
+            diet += "<p><b>Dinner:</b> Soup, Boiled Vegetables</p>";
+        }
+    }
+
+    // SENIOR
+    else{
+        diet += "<p><b>Breakfast:</b> Oatmeal, Milk</p>";
+        diet += "<p><b>Lunch:</b> Soft Rice, Daal, Vegetables</p>";
+        diet += "<p><b>Snack:</b> Fruits</p>";
+        diet += "<p><b>Dinner:</b> Light Soup, Chapati</p>";
+    }
+
+    result.innerHTML = diet;
+}
+</script>
+
+</body>
+</html>
